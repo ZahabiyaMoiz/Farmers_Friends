@@ -1,0 +1,9 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+<div class="container weather_container">
+    <input type="date" id="weather_date" name="weather_date" required>
+    <button id="get_weather">Get Weather</button>
+    <div id="weather_report">
+    </div>
+</div>
+{% endblock %}

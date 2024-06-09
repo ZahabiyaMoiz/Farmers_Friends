@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Friend</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css') }}/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css') }}/resize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon') }}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon') }}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon') }}/favicon-16x16.png">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon') }}/site.webmanifest">
+    <link rel="mask-icon" href="{{ url_for('static', filename='favicon') }}/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images') }}/logo.png" alt="Your Logo">
+    </div>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="list">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('products') }}">Products</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search" class="search-bar" id="searchInput">
+        </div>
+        <div class="profile-icons">
+            <div class="profile-item">
+                <a href="#"><i class="fas fa-user-circle"></i>
+                <span>Profile</span></a>
+            </div>
+            <div class="profile-item">
+                <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span></a>
+            </div>
+            <!-- <div class="profile-item">
+              <a href="{# url_for('signup') #}"><i class="fas fa-store"></i>
+                <span>Want to become a Seller or Buyer?</span></a>
+            </div> -->
+        </div>
+    </div>
+    <div class="container">
+        <h2>Invoice</h2>
+        <div class="invoice">
+            <div class="invoice-header">
+                <p>Date: {{ data.date }}</p>
+                <p>Invoice Number: {{ data.invoice_number }}</p>
+            </div>
+            <hr>
+            <div class="customer-details">
+                <h2>Customer Details</h2>
+                <p><strong>Customer Name:</strong> {{ data.customer_name }}</p>
+                <p><strong>Email:</strong> {{ data.customer_email }}</p>
+                <p><strong>Phone:</strong> {{ data.customer_phone }}</p>
+                <!-- <p><strong>Address:</strong> 123 Street, City, Country</p> -->
+            </div>
+            <hr>
+            <div class="itemized-list">
+                <h2>Itemized List</h2>
+                {% set total = namespace(value=0) %}
+                {% for i in data.products %}
+                    <div class="item">
+                        <p><strong>Product Name:</strong> {{ i.product_name }}</p>
+                        <p><strong>Unit Price:</strong> Rps. {{ i.product_price }}</p>
+                        <p><strong>Quantity:</strong> {{ i.product_quantity }}</p>
+                        <p><strong>Total:</strong> Rps. {{ i.product_price * i.product_quantity }}</p>
+                    </div>
+                    {% set total.value = total.value + ( i.product_price * i.product_quantity) %}
+                {% endfor %}
+            </div>
+            <div class="total-amount">
+                <p><strong>Total Amount:</strong> Rps. {{ total.value }}</p>
+            </div>
+            <hr>
+            <div class="payment-info">
+                <h2>Payment Information</h2>
+                <p><strong>Payment Method:</strong> Cash</p>
+                <p><strong>Due Date:</strong> January 15, 2023</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</html>

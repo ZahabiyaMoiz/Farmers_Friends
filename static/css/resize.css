@@ -1,0 +1,122 @@
+@media (max-width: 767px) {
+    .about-section{
+        padding: 0;
+    }
+    .search-bar {
+        width: 100%;
+    }
+    .services{
+        display: block;
+        padding: 0;
+    }
+    .service{
+        width: auto;
+    }
+    .categories{
+        display: block;
+        padding: 0;
+    }
+    .login-container{
+        display: block;
+    }
+    .product-card{
+        width: auto;
+    }
+    .navbar{
+        display: none;
+    }
+    .mobile-navbar{
+        display: block;
+    }
+    .mobile-navbar .menu-toggle {
+        display: flex;
+    }
+
+    .mobile-navbar .menu-items {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #1A5D1A;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mobile-navbar .menu-items.show {
+        display: flex;
+    }
+
+    .mobile-navbar .menu-items a {
+        text-align: left;
+        display: block;
+    }
+    .profile-item{
+        margin-left: 0;
+    }
+    .login-form h2{
+        font-size: 33px;
+        margin-bottom: -16px;
+        margin-top: 112px;
+    }
+    .login-form h3{
+        font-size: 16px;
+    }
+    .info .signup-button{
+        padding: 12px 80px;
+    }
+    .login-form button{
+        padding: 12px 80px;
+    }
+    .profile{
+        margin-top: 100px;
+    }
+    .info-item {
+        font-size: 12px;
+    }
+    h2{
+        font-size: 30px;
+    }
+    .profile button{
+        width: 100%;
+    }
+    .modal-add-cart{
+        top: 0;
+    }
+    .checkout-container{
+        display: block;
+    }
+    .checkout-form{
+        display: block;
+    }
+    .checkout-form .scroll{
+        height: auto;
+        overflow: hidden;
+    }
+    .product-description{
+        font-size: 10px;
+    }
+    .category img{
+        width: 100%;
+        height: auto;
+    }
+    .logo{
+        position: relative;
+    }
+    .about-content p{
+        font-size: 12px;
+    }
+    .values-section{
+        display: block;
+    }
+    .value-box{
+        padding: 5px;
+        width: 100%;
+    }
+    .about-content p{
+        font-size: 10px;
+    }
+    .service li{
+        font-size: 10px;
+    }
+}

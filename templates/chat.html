@@ -1,0 +1,114 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="container">
+        <input type="hidden" id="farmer_id" value="{{ farmer_id }}">
+        <!-- <h2>Let's Chat!</h2> -->
+        <div class="inbox">
+            <!-- sessions  -->
+            <div class="product-column">
+                <h3>Products</h3>
+                <div class="product-list">
+                    {% for i, j in chats.items() %}
+                    <!-- session-item  -->
+                        <div class="product tablinks" onclick="openCustomer(event, 'customer_id_{{ i }}')">{{ j.product_name }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- sessions sessions2  -->
+            <div class="sender-column">
+                <h3>Customers</h3>
+                {% for product_id, product_info in chats.items() %}
+                    {% set seen_customers = "" %}
+                    {% for customer_id, customer_data in product_info.customer_chats.items() %}
+                        {% if customer_data.customer_name not in seen_customers.split(" ") %}
+                        <!-- session-item -->
+                            <div class="sender tabCustomerContent tabCustomerlinks customer_id_{{ product_id }}" id="customer_id_{{ product_id }}" onclick="openChat(event, 'chat_id_{{ product_id }}_{{ customer_id }}')">
+                                Customer {{ customer_data.customer_name }}
+                            </div>
+                            {% set seen_customers = seen_customers + " " + customer_data.customer_name %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <!-- chat-setting  -->
+            <div class="chat-column">
+                <h2>Chat</h2>
+                <div class="chat-box">
+                    {% for i, j in chats.items() %}
+                        {%  for customer_id, chat_data in j.customer_chats.items() %}
+                            <div id="chat_id_{{i}}_{{ customer_id }}" class="tabcontent">
+                                {% for message in chat_data.messages %}
+                                    {% if message.sender_type == "farmer" %}
+                                    <!-- message -->
+                                        <div class="send-col">
+                                            <div class="sent">{{ message.message }}</div>
+                                        </div>
+                                    {% else %}
+                                        <div class="receive-col">
+                                            <div class="received">{{ message.message }}</div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="chat-input">
+                                    <input type="hidden" class="customer_id" value="{{ customer_id }}">
+                                    <input type="hidden" class="product_id" value="{{ i }}">
+                                    <input type="text" class="message_text" placeholder="Type your message here">
+                                    <button type="button" class="send">Send</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block base_script %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+           var tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            var open_chat = "{{ open_chat }}" == "True" ? true : false;
+            if (open_chat) {
+                document.getElementById("chat_id_{{product_id}}_{{prod_farmer_id}}").style.display = "block";
+            }
+        });
+        function openCustomer(evt, customerName) {
+            var i, tabCustomerContent, tablinks;
+            tabCustomerContent = document.getElementsByClassName("tabCustomerContent");
+            for (i = 0; i < tabCustomerContent.length; i++) {
+                tabCustomerContent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            var customer_chats = document.getElementsByClassName(customerName);
+            for (i = 0; i < customer_chats.length; i++) {
+                customer_chats[i].style.display = "block";
+            }
+            // document.getElementById(customerName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function openChat(evt, cityName) {
+            var i, tabcontent, tabCustomerlinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tabCustomerlinks = document.getElementsByClassName("tabCustomerlinks");
+            for (i = 0; i < tabCustomerlinks.length; i++) {
+                tabCustomerlinks[i].className = tabCustomerlinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultProduct").click();
+        document.getElementById("defaultCustomer").click();
+    </script>
+{% endblock %}

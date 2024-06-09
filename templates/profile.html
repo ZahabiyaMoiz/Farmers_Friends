@@ -1,0 +1,80 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="container">
+        <div class="profile">
+            {% if farmer_id %}
+                <h1>Your Profile</h1>
+                <section class="personal-info">
+                    <h2>Personal Information</h2>
+                    <div class="info-item">
+                        <strong>Name:</strong> {{user.name}}
+                    </div>
+                    <div class="info-item">
+                        <strong>Email:</strong> {{ user.email }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Address:</strong> {{ user.location }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Phone Number:</strong> {{ user.phone }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Profile Type:</strong> {{ profile_type }}
+                    </div>
+                </section>
+                <section class="about">
+                    <h2>About</h2>
+                    <div class="info-item">
+                        <strong>Farm Size:</strong> {{ user.farm_size }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Total Deliveries:</strong> {{ user.farming_experience }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Check Weather Updates:</strong>
+                    </div>
+                    <button id="farmer_prof_update">Update Profile</button>
+                </section>
+                <section class="product">
+                    <h2>Your Products</h2>
+                    <ul class="product-list">
+                        {% for i in products %}
+                            <li>
+                                <span>Name:</span> {{ i.name }}
+                                <span>Quantity:</span> {{ i.quantity }}
+                                <span>Price:</span> ${{ i.price }}
+                                <div class="buttons">
+                                    <button class="update-btn product-update-btn" data-product_id="{{ i.id }}">Update</button>
+                                    <button class="delete-btn product-delete-btn" data-product_id="{{ i.id }}">Delete</button>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        <button class="add-btn product-add-btn">Add More Products</button>
+                    </ul>
+                </section>
+            {% elif buyer_id %}
+                <h1>Your Profile</h1>
+                <section class="personal-info">
+                    <h2>Personal Information</h2>
+                    <div class="info-item">
+                        <strong>Name:</strong> {{user.name}}
+                    </div>
+                    <div class="info-item">
+                        <strong>Email:</strong> {{ user.email }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Address:</strong> {{ user.location }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Phone Number:</strong> {{ user.phone }}
+                    </div>
+                    <div class="info-item">
+                        <strong>Profile Type:</strong> {{ profile_type }}
+                    </div>
+                </section>
+                <button id="buyer_prof_update">Update Profile</button>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}

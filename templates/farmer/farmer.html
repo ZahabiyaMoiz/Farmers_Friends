@@ -1,0 +1,31 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="container">
+        <div class="profile-dashboard">
+            <div class="profile-details">
+                <h2>Your Profile</h2>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="social_accounts">Add Social Links (if any):</label>
+                    <input type="text" id="social_accounts" name="social_accounts">
+                    <label for="farm-size">Farm Size:</label>
+                    <input type="number" id="farm-size" name="farm-size">
+                    <label for="experience">Experience:</label>
+                    <textarea id="experience" name="experience"></textarea>
+                    <label for="total-deliveries">Total Deliveries:</label>
+                    <input type="number" id="total-deliveries" name="total-deliveries">
+                    <label for="happy-customers">Happy Customers:</label>
+                    <input type="number" id="happy-customers" name="happy-customers">
+                    <button type="submit">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

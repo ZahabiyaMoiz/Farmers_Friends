@@ -1,0 +1,100 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="banner">
+    </div>
+    <div class="container">
+        <div class="add-to-cart">
+            <button><i class="fa fa-shopping-cart"></i></button>
+        </div>
+        <div class="about-section">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>At Farmer's Friend, we are passionate about bridging the gap between rural and urban areas, connecting buyers and sellers of agricultural products for seamless and efficient transactions. In an increasingly fast-paced world, the need for fresh, quality agricultural products has never been greater. Our platform serves as the vital link between rural farmers who produce these goods and urban consumers and wholesalers who depend on them. We believe in the power of agriculture to drive economic growth, and our goal is to empower farmers and facilitate access to top-quality products for our urban partners.We are committed to making a positive impact on the agricultural industry by: </p>
+                <div class="values-section">
+                    <div class="value-box">
+                        <h3>Vision</h3>
+                        <p>Empowering rural communities and enhancing agricultural sustainability.</p>
+                    </div>
+                    <div class="value-box">
+                        <h3>Mission</h3>
+                        <p>Connecting farmers with urban markets, ensuring fair prices, and promoting agricultural innovation.</p>
+                    </div>
+                    <div class="value-box">
+                        <h3>Values</h3>
+                        <p>Integrity, Collaboration, Sustainability, and Customer-Centricity.</p>
+                    </div>
+                </div>
+                <a href="#" class="button">Learn More</a>
+            </div>
+        </div>
+        
+        <div class="our_categories">
+        <h2>Our Categories</h2>
+        <div class="categories">
+            <div class="category">
+                <a href="#">
+                    <img src="{{ url_for('static', filename='images') }}/tomato farm.jpg" alt="Vegetables">
+                    <h3>Vegetables</h3>
+                </a>
+            </div>
+            <div class="category">
+                <a href="#">
+                    <img src="{{ url_for('static', filename='images') }}/Apple Farms.jpg" alt="Fruits">
+                    <h3>Fruits</h3>
+                </a>
+            </div>
+            <div class="category">
+                <a href="#">
+                    <img src="{{ url_for('static', filename='images') }}/rice.jpg" alt="Livestock">
+                    <h3>Livestock</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="ourservice">
+    <h2>Our Services</h2>
+    <div class="services">
+        <div class="service">
+            <h3>Normal User</h3>
+            <ul>
+                <li>Normal users have access to the platform's basic features, including browsing products and services, searching for specific items, and viewing product details.</li>
+                <li>Normal users receive standard customer support, including assistance with account-related issues and general inquiries. Response times may vary.</li>
+                <li>Normal users enjoy standard pricing for products and services on the platform, with no special discounts or exclusive offers.</li>
+                <li>Normal users can participate in the platform's community forums and discussions, sharing their experiences and insights with other users.</li>
+            </ul>
+            <button>Learn More</button>
+        </div>
+        <div class="service">
+            <h3>Premium User</h3>
+            <ul>
+                <li>Premium users enjoy access to advanced features not available to normal users, such as priority search results, ad-free browsing, and exclusive product previews.</li>
+                <li>Premium users receive priority customer support with faster response times and dedicated assistance for account-related issues and inquiries.</li>
+                <li>Premium users benefit from exclusive discounts and promotions on select products and services, helping them save on their purchases.</li>
+                <li>Premium users gain access to an exclusive community of like-minded individuals, where they can network, collaborate, and access premium content and discussions.</li>
+            </ul>
+            <button>Learn More</button>
+        </div>
+    </div>
+    </div>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+    <div class="copyright"><p>SiteBy: farmers Friend</p></div>
+    </div>
+    <div class="footer"></div>
+{% endblock %}

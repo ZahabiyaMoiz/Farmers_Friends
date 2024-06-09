@@ -1,0 +1,56 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="container" id="no-padding">
+        <div class="add-to-cart">
+            <button><i class="fa fa-shopping-cart"></i></button>
+        </div>
+        <div class="login-container">
+            <div class="login-form col-8">
+                <h2>Create Your Account</h2>
+                <h3>Unlock New Professional Opportunities</h3>
+                <form id="signup_form" method="POST" action="" role="form">
+                    <div class="form-group">
+                        <input type="text" id="username" placeholder="Enter Your Name" name="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Enter Email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Enter Phone Number" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Enter Password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="reenter-password" placeholder="Re-enter Password" name="reenter-password">
+                    </div>
+                    <div class="form-group">
+                        <select id="category" name="category">
+                            <option value="" disabled selected>Want to become a?</option>
+                            <option value="farmer">Seller</option>
+                            <option value="customer">Buyer</option>
+                        </select>
+                    </div>
+                    <div class="form-group zipcode" style="display: none;">
+                        <input type="number" id="zipcode" placeholder="Enter Your Zip-Code" name="zipcode" min="10000" max="99999">
+                    </div>
+                    <div class="form-group">
+                        <select id="is_premium" name="is_premium">
+                            <option value="" disabled selected>Want to become a Premium Member?</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="center-btn">
+                        <button type="button" id="submit">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            <div class="info col-4">
+                <h2>Already a Member?</h2>
+                <p>Login to Explore a World of Opportunities!</p>
+                <button class="signup-button login" onclick="login()">Log In</button>
+            </div>    
+        </div>
+    </div>
+{% endblock %}

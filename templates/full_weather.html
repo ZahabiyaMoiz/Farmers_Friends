@@ -1,0 +1,66 @@
+<div class="weather_container">
+<div>
+    <h3>Detailed Weather Report</h3>
+</div>
+
+<div class="container">
+    <p>
+        <b>Latitude: </b> {{ weather['lat'] }}
+    </p>
+    <p>
+        <b>Longitude: </b> {{ weather['lon'] }}
+    </p>
+    <p>
+        <b>TimeZone: </b> {{ weather['tz'] }}
+    </p>
+    <p>
+        <b>Date: </b> {{ weather['date'] }}
+    </p>
+    <p>
+        <b>Units: </b> {{ weather['units'] }}
+    </p>
+    <p>
+        <b>Cloud Cover: </b> {{ weather['cloud_cover']['afternoon'] }}
+    </p>
+    <p>
+        <b>Humidity: </b> {{ weather['humidity']['afternoon'] }}
+    </p>
+    <p>
+        <b>Pressure: </b> {{ weather['pressure']['afternoon'] }}
+    </p>
+    <p>
+        <b>Precipitation: </b> {{ weather['precipitation']['total'] }}
+    </p>
+    <p>
+        <b>Temperature: </b> 
+        <p>Afternoon: {{ weather['temperature']['afternoon'] }}</p>
+        <p>Night: {{ weather['temperature']['night'] }}</p>
+        <p>Minimum: {{ weather['temperature']['min'] }}</p>
+        <p>Maximum: {{ weather['temperature']['max'] }}</p>
+        <p>Morning: {{ weather['temperature']['morning'] }}</p>
+        <p>Evening: {{ weather['temperature']['evening'] }}</p>
+        <p>
+            <b>Wind: </b>
+            <p>Speed: {{ weather['wind']['max']['speed'] }}</p>
+            <p>Direction: {{ weather['wind']['max']['direction'] }}</p>
+        </p>
+    </p>
+    <p>
+        {% if aqi.list[0]["main"]["aqi"] == 1 %}
+        <b>Air Quality:</b> Good
+        {% endif %}
+        {% if aqi.list[0]["main"]["aqi"] == 2 %}
+        <b>Air Quality:</b> Fair
+        {% endif %}
+        {% if aqi.list[0]["main"]["aqi"] == 3 %}
+        <b>Air Quality:</b> Moderate
+        {% endif %}
+        {% if aqi.list[0]["main"]["aqi"] == 4 %}
+        <b>Air Quality:</b> Poor
+        {% endif %}
+        {% if aqi.list[0]["main"]["aqi"] == 5 %}
+        <b>Air Quality:</b> Very Poor
+        {% endif %}
+    </p>
+</div>
+</div>

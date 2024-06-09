@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Friend</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css') }}/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css') }}/resize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon') }}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon') }}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon') }}/favicon-16x16.png">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon') }}/site.webmanifest">
+    <link rel="mask-icon" href="{{ url_for('static', filename='favicon') }}/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images') }}/logo.png" alt="Your Logo">
+    </div>
+    {% block base_stylesheet %}{% endblock %}
+</head>
+
+<body>
+    {% if buyer_id %}
+        <input type="hidden" id="buyer_id" value="{{buyer_id}}">
+    {% endif %}
+    {% if farmer_id %}
+        <input type="hidden" id="farmer_id" value="{{farmer_id}}">
+    {% endif %}
+    <div class="mobile-navbar">
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-items">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('products') }}">Products</a>
+            <a href="#">About Us</a>
+            <a href="#">Track Your Order</a>
+            <a href="#">Inbox</a>
+            <a href="#">Contact</a>
+            <div class="profile-item">
+                <a href="{{ url_for('login') }}"><i class="fas fa-store"></i>
+                    <span>Login</span>
+                </a>
+                <!-- <a href="{# url_for('buyer_login') #}"><i class="fas fa-store"></i>
+                    <span>Buyer Login</span>
+                </a> -->
+                <a href="{{ url_for('signup') }}"><i class="fas fa-store"></i>
+                    <span>Want to become a Farmer or Customer?</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="list">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('products') }}">Products</a>
+            <a href="#">About Us</a>
+            {% if buyer_id %}
+                <a href="{{ url_for('order') }}">Track Your Order</a>
+            {% endif %}
+            {% if farmer_id and is_premium %}
+                <a href="{{ url_for('farmer_chat') }}">Inbox</a>
+            {% endif %}
+            <a href="#">Contact</a>
+        </div>
+        <div class="ffs-chat-panel chat-visible">
+			<div class="ffs-panel-header">
+				<div class="ffs-panel-heading">
+					<div class="ffs-panel-title">Your Daily Notification Updates:</div>
+					<!-- <div class="ffs-panel-intro">Hi! Click one of our members below to chat on <strong>WhatsApp ;)</strong></div> -->
+				</div>
+			</div>
+			<div class="ffs-panel-content">
+				<div class="ffs-panel-slide ffs-panel-slide1">
+					<ul class="ffs-content-list">
+                        {% for chat in notification_data %}
+                            <li class="ffs-content-item ffs-content-item-1">
+                                <a class="ffs-person" href="#">
+                                    <div class="ffs-person-txt">
+                                        <div class="ffs-person-name">{{chat['name']}}</div>
+                                        <div class="ffs-person-duty">{{chat['product_name']}}</div>
+                                        <input type="hidden" class="buyer_id" value="{{ chat['buyer_id'] }}">
+                                        <input type="hidden" class="farmer_id" value="{{ chat['farmer_id'] }}">
+                                        <input type="hidden" class="product_id" value="{{ chat['product_id'] }}">
+                                        <input type="hidden" class="notification_id" value="{{ chat['notification_id'] }}">
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+					</ul>
+				</div>
+				<div class="ffs-panel-slide ffs-panel-slide2">
+					<div class="ffs-chat-slide">
+						<div class="ffs-chat-slide-wrap">
+							<div class="ffs-previous-slide">
+								<!-- <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> -->
+								<i class="fa fa-angle-left" aria-hidden="true"></i>
+							</div>
+							<div class="ffs-defined-message">Hello! How can I help you?</div>
+							<div class="ffs-message-form">
+								<input class="ffs-message-input" placeholder="hello">
+								<a class="ffs-submit"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="chat-farmer">
+            <button type="button"><i class="fa-solid fa-bell"></i></button>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search" class="search-bar" id="searchInput">
+        </div>
+        <div class="profile-icons">
+            {% if farmer_id or buyer_id %}
+                <div class="profile-item">
+                    <a href="{{ url_for('profile') }}"><i class="fas fa-user-circle"></i>
+                    <span>Profile</span></a>
+                </div>
+                <div class="profile-item">
+                    <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span></a>
+                </div>
+            {% else %}
+                <div class="profile-item">
+                    <a href="{{ url_for('login') }}"><i class="fas fa-store"></i>
+                    <span>Login</span></a>
+                </div>
+                <!-- <div class="profile-item">
+                    <a href="{# url_for('buyer_login') #}"><i class="fas fa-store"></i>
+                    <span>Buyer Login</span></a>
+                </div> -->
+                <div class="profile-item">
+                    <a href="{{ url_for('signup') }}"><i class="fas fa-store"></i>
+                    <span>Want to become a Farmer or Customer?</span></a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% block farmer_base %}
+    {% endblock %}
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% block base_script %}{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="{{ url_for('static', filename='js') }}/script.js"></script>
+{% block open_chat_script %}{% endblock %}
+</html>

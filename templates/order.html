@@ -1,0 +1,33 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+<div class="order-container">
+    <div class="product-list">
+        <h2>Product Listing</h2>
+        {% for order in order_data %}
+            <p>
+                {{ order.product_name }}
+            </p>
+        {% endfor %}
+    </div>
+    <div class="process">
+        <h2>Tracking Record Process</h2>
+        <ul>
+            <li class="active" style="animation: slideIn 0.5s ease;"><i class="fas fa-truck"></i><span>Order Dispatched</span></li>
+            <li style="animation: slideIn 0.5s ease 0.5s;"><i class="fas fa-shipping-fast"></i><span>In Transit</span></li>
+            <li style="animation: slideIn 0.5s ease 1s;"><i class="fas fa-check-circle"></i><span>Order Received</span></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const steps = document.querySelectorAll('.process li');
+        let index = 0;
+        const interval = setInterval(function() {
+            steps[index].classList.add('active');
+            index++;
+            if (index === steps.length) clearInterval(interval);
+        }, 1000);
+    });
+</script>
+{% endblock %}

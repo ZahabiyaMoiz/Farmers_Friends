@@ -1,0 +1,30 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="container" id="no-padding">
+        <div class="add-to-cart">
+            <button><i class="fa fa-shopping-cart"></i></button>
+        </div>
+        <div class="login-container" id="giveheight">
+            <div class="login-form col-8">
+                <h2>Login To Your Account</h2>
+                <h3>Stay Updated On Your Professional Work</h3>
+                <form id = "buyer_login" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="username" placeholder="Enter Your Name" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Enter Password" id="password" name="password" required>
+                    </div>
+                    <div class="center-btn">
+                        <button type="button" id="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="info col-4">
+                <h2>New Here?</h2>
+                <p>Sign up and discover a great amount of new opportunities!</p>
+                <button class="signup-button" onclick="signup()">Sign Up</button>
+            </div>    
+        </div>
+    </div>
+{% endblock %}

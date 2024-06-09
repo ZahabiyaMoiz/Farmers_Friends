@@ -1,0 +1,54 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="container">
+        <h2>Checkout</h2>
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <div class="form-column scroll">
+                    {% if data %}
+                        {% for i in data %}
+                            <div class="single-item">
+                                <h3>Product Details</h3>
+                                <input type="hidden" class="product_id" value="{{ i.product_id }}">
+                                <label for="product-name">Product Name:</label>
+                                    <input type="text" class="product-name" name="product-name" value="{{ i.product_title }}" readonly>
+                                <label for="product-image">Product Image:</label>
+                                    <img src="{{ i.product_url }}"" alt="Product Image" class="product-image">
+                                <label for="amount">Amount:</label>
+                                    <input type="text" class="amount" name="amount" value="{{ i.product_price }}" required>
+                                <label for="quantity">Quantity:</label>
+                                    <input type="number" class="quantity" name="quantity" value="{{ i.quantity }}" required>
+                                <!-- <label for="purchased-items">List of Amount Purchasing:</label>
+                                    <input type="text" id="purchased-items" name="purchased-items" required></input> -->
+                                <!-- <button type="button" class="prevBtn">Previous</button>
+                                <button type="button" class="nextBtn">Next</button> -->
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-column">
+                    <form action="" id="customer_checkout">
+                        <h3>Customer Details</h3>
+                        <label for="customer-name">Customer Name:</label>
+                        <input type="text" id="customer_name" name="customer-name" required>
+                        <label for="customer-email">Customer Email:</label>
+                        <input type="email" id="customer_email" name="customer-email" required>
+                        <label for="customer-phone">Customer Phone:</label>
+                        <input type="tel" id="customer_phone" name="customer-phone" required>
+                        <label for="payment-method">Payment Method:</label>
+                        <select id="payment_method" name="payment-method" required>
+                            <option value="cash">Cash</option>
+                            <option value="easypaisa">EasyPaisa</option>
+                        </select>
+                        <label for="state">State:</label>
+                        <input type="text" id="state" name="state" required>
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                        <button id="ch_submit" type="button" target="_blank">Checkout Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "farmer_base.html" %}
+{% block farmer_base %}
+    <div class="inbox">
+        <div class="sender-column">
+            <h2>Senders</h2>
+            <div class="sender-list">
+                <!-- Loop through senders -->
+                    <div class="sender">John Doe</div>
+                    <div class="sender">Jane Smith</div>
+                    <!-- Add more senders -->
+            </div>
+        </div>
+        <div class="product-column">
+            <h2>Products</h2>
+            <div class="product-list">
+                <!-- Loop through products -->
+                    <div class="product">j.product_name</div>
+                    <!-- Add more products -->
+                    
+            </div>
+        </div>
+        <div class="chat-column">
+            <h2>Chat</h2>
+            <div class="chat-box">
+                <!-- Loop through chats -->
+                {% for i, j in chats.items() %}
+                    {%  for customer_id, chat_data in j.customer_chats.items() %}
+                        <div id="chat_id_{{i}}_{{ customer_id }}" class="tabcontent">
+                            <!-- Loop through messages -->
+                            {% for message in chat_data.messages %}
+                                {% if message.sender_type == "farmer" %}
+                                
+                                    <div class="sent">{{ message.message }}</div>
+                                {% else %}
+                                    <div class="received">{{ message.message }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="input-area">
+                <input type="text" placeholder="Type your message...">
+                <button>Send</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
